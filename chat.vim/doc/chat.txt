@@ -1,0 +1,126 @@
+*chat.vim.txt*    OpenRouter API integration for Vim
+
+CONTENTS                                                  *chat.vim-contents*
+
+1. Introduction           |chat.vim-introduction|
+2. Requirements           |chat.vim-requirements|
+3. Installation           |chat.vim-installation|
+4. Configuration          |chat.vim-configuration|
+5. Usage                  |chat.vim-usage|
+6. Commands               |chat.vim-commands|
+7. Functions              |chat.vim-functions|
+
+==============================================================================
+INTRODUCTION                                              *chat.vim-introduction*
+
+chat.vim provides integration with OpenRouter API for chat and code completion
+functionality in Vim.
+
+==============================================================================
+REQUIREMENTS                                            *chat.vim-requirements*
+
+- Vim with +json feature
+- curl command line tool
+- OpenRouter API key
+
+==============================================================================
+INSTALLATION                                            *chat.vim-installation*
+
+Manual Installation:
+
+1. Clone or download the plugin:
+   >
+   git clone https://example.com/chat.vim.git
+   <
+
+2. Copy to Vim plugin directory:
+   - Linux/Mac: ~/.vim/pack/plugins/start/chat.vim
+   - Windows: ~/vimfiles/pack/plugins/start/chat.vim
+
+3. Configure API key:
+
+For VSCode:
+   >
+   {
+       "chatVim": {
+           "openRouterApiKey": "your-api-key-here"
+       }
+   }
+   <
+
+For standard Vim (add to ~/.vimrc):
+   >
+   let g:chat_vim_api_key = "your-api-key-here"
+   <
+
+4. Generate help tags:
+   >
+   :helptags ~/.vim/pack/plugins/start/chat.vim/doc
+   <
+
+==============================================================================
+CONFIGURATION                                         *chat.vim-configuration*
+
+For VSCode with Vim extension:
+>
+   {
+       "chatVim": {
+           "openRouterApiKey": "your-api-key-here"
+       }
+   }
+
+For standard Vim (add to your .vimrc):
+>
+   let g:chat_vim_api_key = "your-api-key-here"
+   let g:chat_vim_model = "anthropic/claude-3-sonnet" " optional
+<
+Available models:
+- google/gemini-2.5-pro-exp-03-25:free (default)
+- anthropic/claude-3-sonnet
+- openai/gpt-4-turbo
+- meta-llama/llama-3-70b-instruct
+
+==============================================================================
+USAGE                                                      *chat.vim-usage*
+
+Basic Usage Example:
+1. Open a file in Vim/VSCode
+2. Enter command mode and type:
+>
+    :Chat "Explain this code"
+<
+3. The response will appear in a preview window
+
+Advanced Usage:
+- Multi-line queries: Use \ for line continuation
+>
+    :Chat "Improve this function:\
+    function test() {\
+      return 1\
+    }"
+<
+- Code completion: Press Tab while editing to trigger completions
+
+Screenshot Example:
+[IMAGE: Terminal showing :Chat command and response preview]
+>
+    +-------------------------------------+
+    | :Chat "Hello"                       |
+    |                                     |
+    | [Preview Window]                    |
+    | Hello! How can I help you today?    |
+    +-------------------------------------+
+<
+
+==============================================================================
+COMMANDS                                                 *chat.vim-commands*
+
+:Chat {message}           Send message to OpenRouter API
+
+==============================================================================
+FUNCTIONS                                              *chat.vim-functions*
+
+chat#SendMessage(message)  Send message to API
+chat#ShowResponse(response) Display API response
+
+ vim:tw=78:ts=8:ft=help:norl:
