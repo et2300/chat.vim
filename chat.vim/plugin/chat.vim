@@ -49,8 +49,41 @@ endfunction
 " Tab completion
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
-" Chat command
+" Get selected text in Visual mode
+function! s:GetVisualSelection()
+  try
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+    let lines = getline(lnum1, lnum2)
+    if len(lines) == 0
+      return ''
+    endif
+    let lines[-1] = lines[-1][:col2 - 1]
+    let lines[0] = lines[0][col1 - 1:]
+    return join(lines, "\n")
+  catch /E20:/ " Mark not set
+    return ''
+  endtry
+endfunction
+
+" Send selected text to API
+function! chat#SendSelection() range
+  let selected_text = s:GetVisualSelection()
+  if empty(selected_text)
+    echoerr "No text selected"
+    return
+  endif
+  call chat#SendMessage(selected_text)
+endfunction
+
+" Chat command (Normal mode)
 command! -nargs=1 Chat call chat#SendMessage(<q-args>)
+
+" Chat command (Visual mode)
+vnoremap <silent> <Plug>(ChatSelection) :<C-u>call chat#SendSelection()<CR>
+" Default mapping for Visual mode (e.g., <leader>c)
+" You can change this mapping in your .vimrc
+vmap <Leader>c <Plug>(ChatSelection)
 
 " Display response in preview window
 function! chat#ShowResponse(response)

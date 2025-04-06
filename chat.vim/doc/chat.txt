@@ -115,7 +115,15 @@ Screenshot Example:
 ==============================================================================
 COMMANDS                                                 *chat.vim-commands*
 
-:Chat {message}           Send message to OpenRouter API
+Normal Mode:
+
+:Chat {message}           Send {message} to OpenRouter API
+
+Visual Mode Mappings:                                *chat.vim-visual-mappings*
+
+<Leader>c                 Send selected text to OpenRouter API (Default mapping)
+                          You can remap this using <Plug>(ChatSelection).
+                          Example: vnoremap <silent> <F5> <Plug>(ChatSelection)
 
 ==============================================================================
 FUNCTIONS                                              *chat.vim-functions*
