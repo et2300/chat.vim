@@ -18,5 +18,7 @@ if !hasmapto('<Plug>(ChatSelection)', 'v')
   vmap <Leader>c <Plug>(ChatSelection)
 endif
 
-" Tab completion (remains in plugin file as it's a mapping)
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" Tab completion mapping
+" If popup menu is visible, cycle through it (<C-n>)
+" Otherwise, call the API completion function chat#CompleteCode()
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : chat#CompleteCode()

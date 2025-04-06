@@ -99,7 +99,10 @@ Advanced Usage:
       return 1\
     }"
 <
-- Code completion: Press Tab while editing to trigger completions
+- Code completion: Press Tab while editing.
+  - If a completion menu is visible, Tab cycles through it.
+  - Otherwise, Tab calls the OpenRouter API to suggest a completion based on the text before the cursor.
+  - WARNING: This API call is synchronous and may cause a brief delay.
 
 Screenshot Example:
 [IMAGE: Terminal showing :Chat command and response preview]
