@@ -6,4 +6,5 @@ chat.vim-installation	chat.txt	/*chat.vim-installation*
 chat.vim-introduction	chat.txt	/*chat.vim-introduction*
 chat.vim-requirements	chat.txt	/*chat.vim-requirements*
 chat.vim-usage	chat.txt	/*chat.vim-usage*
+chat.vim-visual-mappings	chat.txt	/*chat.vim-visual-mappings*
 chat.vim.txt	chat.txt	/*chat.vim.txt*
