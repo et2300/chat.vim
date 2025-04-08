@@ -18,6 +18,9 @@ if !hasmapto('<Plug>(ChatSelection)', 'v')
   vmap <Leader>c <Plug>(ChatSelection)
 endif
 
+" Command to open the TUI interface
+command! ChatTUI call chat#tui#Open()
+
 " Tab completion mapping
 " If popup menu is visible, cycle through it (<C-n>)
 " Otherwise, call the API completion function chat#CompleteCode()
